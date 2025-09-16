@@ -27,13 +27,15 @@ public class BuscarCEPConsumer {
                         String json = resposta.toString();
                         System.out.println("Resposta da API: " + json);
 
+                        extrairDados(json);
+
                 } catch (Exception erro) {
                         System.out.println("Erro: " + erro.getMessage());
                 }
         }
 
         private void extrairDados(String json) {
-                System.out.println("\n Dados Endereco:");
+                System.out.println("\nDados Endereco:");
                 if (json.contains("\"cep\":")) {
                         String cep = extrairCampo(json, "cep");
                         System.out.println("CEP: " + cep);
@@ -57,7 +59,15 @@ public class BuscarCEPConsumer {
         }
 
         private String extrairCampo(String json, String campo) {
-                return "";
+                String buscar = "\"" + campo + "\":\"";
+                int iInicio = json.indexOf(buscar);
+                if (iInicio == -1) {
+                        return "Errou! Não existe";
+                }
+                iInicio += buscar.length();
+
+                int iFim = json.indexOf("\"", iInicio);
+                return json.substring(iInicio, iFim);
         }
 
         public static void main(String[] args) {
