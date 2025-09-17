@@ -9,7 +9,7 @@ public class Menu {
 
             System.out.println("+--+--+--+--+--+--+--+--+--+\n");
             System.out.println("1º Buscar CEP\n");
-            System.out.println("2º Buscar TOP JOGADORES\n");
+            System.out.println("2º Buscar JOGADOR\n");
             System.out.println("3º Buscar CNPJ\n");
             System.out.println("4º Sair\n");
             System.out.println("+--+--+--+--+--+--+--+--+--+\n");
