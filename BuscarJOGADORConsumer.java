@@ -3,11 +3,10 @@ import java.net.URL;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class BuscarCEPConsumer {
-
-        public void buscarCEP(String cep) {
+public class BuscarJOGADORConsumer {
+        public void BuscarJogador(String id) {
                 try {
-                        String sURLTexto = "https://brasilapi.com.br/api/cep/v2/" + cep;
+                        String sURLTexto = "https://api.opendota.com/api/players/" + id;
                         URL url = new URL(sURLTexto);
                         HttpURLConnection conexao = (HttpURLConnection) url.openConnection();
 
@@ -35,27 +34,28 @@ public class BuscarCEPConsumer {
         }
 
         private void extrairDados(String json) {
-                System.out.println("\nDados Endereco:");
-                if (json.contains("\"cep\":")) {
-                        String cep = extrairCampo(json, "cep");
-                        System.out.println("CEP: " + cep);
+                System.out.println("\nJogador: ");
+                if (json.contains("\"account_id\":")) {
+                        String idConta = extrairCampo(json, "account_id");
+                        System.out.println("ID da Conta: " + idConta);
                 }
-                if (json.contains("\"street\":")) {
-                        String rua = extrairCampo(json, "street");
-                        System.out.println("Rua: " + rua);
+                if (json.contains("\"steamid\":")) {
+                        String idSteam = extrairCampo(json, "steamid");
+                        System.out.println("ID da Steam: " + idSteam);
                 }
-                if (json.contains("\"state\":")) {
-                        String estado = extrairCampo(json, "state");
-                        System.out.println("Estado: " + estado);
+                if (json.contains("\"personaname\":")) {
+                        String nomePerso = extrairCampo(json, "personaname");
+                        System.out.println("Nome Do Personagem: " + nomePerso);
                 }
-                if (json.contains("\"city\":")) {
-                        String cidade = extrairCampo(json, "city");
-                        System.out.println("Cidade: " + cidade);
+                if (json.contains("\"computed_rating\":")) {
+                        String mmr = extrairCampo(json, "computed_rating");
+                        System.out.println("MMR do Jogador: " + mmr);
                 }
-                if (json.contains("\"neighborhood\":")) {
-                        String bairro = extrairCampo(json, "neighborhood");
-                        System.out.println("Bairro: " + bairro);
+                if (json.contains("\"rank_tier\":")) {
+                        String rank = extrairCampo(json, "rank_tier");
+                        System.out.println("Rank do Jogador: " + rank);
                 }
+
         }
 
         private String extrairCampo(String json, String campo) {
@@ -66,12 +66,12 @@ public class BuscarCEPConsumer {
                         return "Errou! Não existe";
                 }
                 iInicio += buscar.length();
-    
+
                 // Pula espaços em branco
                 while (iInicio < json.length() && Character.isWhitespace(json.charAt(iInicio))) {
                         iInicio++;
                 }
-    
+
                 // Se começar com aspas, é string
                 if (json.charAt(iInicio) == '"') {
                         iInicio++; // pula aspas inicial
@@ -86,4 +86,5 @@ public class BuscarCEPConsumer {
                         return json.substring(iInicio, iFim).trim();
                 }
         }
+
 }
