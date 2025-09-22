@@ -4,16 +4,19 @@ public class Menu {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ContadorDeAPIs contador = new ContadorDeAPIs();
+        HistoricoDeBusca historico = new HistoricoDeBusca();
         int numeroEscolhido = 0;
 
-        while (numeroEscolhido != 5) {
+        while (numeroEscolhido != 7) {
 
             System.out.println("+--+--+--+--+--+--+--+--+--+\n");
             System.out.println("1º Buscar CEP\n");
             System.out.println("2º Buscar JOGADOR\n");
             System.out.println("3º Buscar CNPJ\n");
             System.out.println("4º Mostrar Contadores de busca");
-            System.out.println("5º Sair\n");
+            System.err.println("5º Mostrar Histórico de Consultas");
+            System.err.println("6º Consultar tudo junto");
+            System.out.println("7º Sair\n");
             System.out.println("+--+--+--+--+--+--+--+--+--+\n");
             System.out.println("Escolha uma opção: ");
 
@@ -27,6 +30,7 @@ public class Menu {
                     String numeroCEP = scanner.nextLine();
                     buscaCep.buscarCEP(numeroCEP);
                     contador.contarCEP();
+                    historico.adicionarCEP(numeroCEP);
                     break;
                 case 2:
                     BuscarJOGADORConsumer buscaJogador = new BuscarJOGADORConsumer();
@@ -34,6 +38,7 @@ public class Menu {
                     String idJogador = scanner.nextLine();
                     buscaJogador.BuscarJogador(idJogador);
                     contador.contarJog();
+                    historico.adicionarJog(idJogador);
                     break;
                 case 3:
                     BuscarCNPJConsumer buscaCNPJ = new BuscarCNPJConsumer();
@@ -41,6 +46,7 @@ public class Menu {
                     String numeroCNPJ = scanner.nextLine();
                     buscaCNPJ.buscarCNPJ(numeroCNPJ);
                     contador.contarCNPJ();
+                    historico.adicionarCNPJ(numeroCNPJ);
                     break;
                 case 4:
                     System.out.println("A busca de CEP foi realizada: " + contador.getContadorCEP() + " vezes!");
@@ -48,6 +54,9 @@ public class Menu {
                     System.out.println("A busca de CNPJ foi realizada: " + contador.getContadorCNPJ() + " vezes!");
                     break;
                 case 5:
+                    System.out.println(historico.getHistorico());
+                    break;
+                case 6:
                     System.out.println("Sistema Encerrado!");
                     System.exit(numeroEscolhido);
                     break;
