@@ -1,10 +1,10 @@
 public class TratativasCEP {
-    Validacoes validacoes;
-    public void TratativaCEP(Validacoes validacoes) {
+    Validacoes validacoesCEP;
+    public void TratativaCEP(Validacoes validacoesCEP) {
         System.out.println("Qual o numero do CEP: ");
-        String numeroCEP = validacoes.scanner.nextLine();
-        validacoes.buscaCep.buscarCEP(numeroCEP);
-        validacoes.contador.contarCEP();
-        validacoes.historico.adicionarCEP(numeroCEP);
+        String numeroCEP = validacoesCEP.scanner.nextLine();
+        validacoesCEP.buscaCep.buscarCEP(numeroCEP);
+        validacoesCEP.contador.contarCEP();
+        validacoesCEP.historico.adicionarCEP(numeroCEP);
     }
 }

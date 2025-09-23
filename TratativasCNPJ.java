@@ -1,6 +1,6 @@
 public class TratativasCNPJ {
     Validacoes validacoesCNPJ;
-    public void TratativasCNPJ() {
+    public void TratativasCNPJ(Validacoes validacoesCNPJ) {
         System.out.println("Qual o numero do CNPJ: ");
         String numeroCNPJ = validacoesCNPJ.scanner.nextLine();
         validacoesCNPJ.buscaCNPJ.buscarCNPJ(numeroCNPJ);
